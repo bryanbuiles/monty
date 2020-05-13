@@ -40,7 +40,12 @@ void pall(stack_t **head, __attribute__((unused)) unsigned int line_number)
 		temp = temp->next;
 	}
 }
-
+/**
+ * pint - Aprint de first node
+ * @head: pointer to address of list
+ * @line_number: line number
+ * Return: void
+ */
 void pint(stack_t **head, unsigned int line_number)
 {
 	stack_t *temp;
