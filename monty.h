@@ -18,9 +18,9 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -33,23 +33,27 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ * struct byteline - pair of line content array and line number
+ * @number: number of curent line
+ * @contenido: array of strings with opcodes
+ */
 typedef struct byteline
 {
-        unsigned int number;
-        char **contenido;
+	unsigned int number;
+	char **contenido;
 } byteline_t;
 
-extern long int argument;
+extern int argument;
 
-void (*get_op_func(byteline_t line))(stack_t **, unsigned int);
-bool argument_check(char *token);
-bool comment_check(char **args);
+void (*op(byteline_t line, FILE * f, stack_t **s))(stack_t **, unsigned int);
 void split_line(char *buffer, byteline_t *line, char *delimiter);
 void push(stack_t **head, unsigned int line_number);
 void pall(stack_t **head, unsigned int line_number);
-void free_stack(stack_t *head);
+void free_stack(stack_t **head);
+bool is_intiger(char *token);
 #endif

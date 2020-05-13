@@ -1,12 +1,13 @@
 #include "monty.h"
 /**
- * get_op_func - execute function if available
+ * op - execute function if available
  * @line: struct conaining lines
- * @file: file to open
+ * @f: file to open
+ * @s: head of stack
  * Return: void
  */
 
-void (*get_op_func(byteline_t line, FILE *file, stack_t **stack))(stack_t **, unsigned int)
+void (*op(byteline_t line, FILE * f, stack_t **s))(stack_t **, unsigned int)
 {
 	unsigned int i = 0;
 
@@ -28,8 +29,8 @@ void (*get_op_func(byteline_t line, FILE *file, stack_t **stack))(stack_t **, un
 				{
 					free(line.contenido[0]);
 					free(line.contenido);
-					fclose(file);
-					free_stack(stack);
+					fclose(f);
+					free_stack(s);
 					fprintf(stderr, "L%d: usage: push integer\n", line.number);
 					exit(EXIT_FAILURE);
 				}
@@ -42,6 +43,6 @@ void (*get_op_func(byteline_t line, FILE *file, stack_t **stack))(stack_t **, un
 	printf("L%d: unknown instruction %s\n", line.number, line.contenido[0]);
 	free(line.contenido[0]);
 	free(line.contenido);
-	fclose(file);
+	fclose(f);
 	exit(EXIT_FAILURE);
 }
