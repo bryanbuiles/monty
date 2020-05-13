@@ -44,13 +44,14 @@ typedef struct instruction_s
  */
 typedef struct byteline
 {
+        FILE *file;
         unsigned int number;
         char **contenido;
 } byteline_t;
 
-extern int argument;
+extern byteline_t montyData;
 
-void (*op(byteline_t line, FILE *f, stack_t **s))(stack_t **, unsigned int);
+void (*op(stack_t **s))(stack_t **, unsigned int);
 void split_line(char *buffer, byteline_t *line, char *delimiter);
 void push(stack_t **head, unsigned int line_number);
 void pall(stack_t **head, unsigned int line_number);
