@@ -1,4 +1,5 @@
 #include "monty.h"
+int argument;
 /**
  * main - main function
  * @argc: NUmber of argument in prompt
@@ -31,7 +32,7 @@ int main(int argc, char **argv)
 		line.number++;
 		split_line(buffer, &line, " '\n'");
 		if (line.contenido && line.contenido[0])
-			get_op_func(line, file, &stack)(&stack, linenumber);
+			op(line, file, &stack)(&stack, linenumber);
 		else
 			free(line.contenido);
 	}
