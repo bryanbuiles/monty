@@ -1,6 +1,6 @@
 #include "monty.h"
 
-bool argument_check(char *token)
+bool is_intiger(char *token)
 {
     unsigned int i;
 
@@ -8,18 +8,8 @@ bool argument_check(char *token)
     {
         if (token[0] == '-')
             continue;
-        if (token[i] <= '0' || token[i] >= '9')
+        if (token[i] <= 47 || token[i] >= 58)
             return (false);
     }
-
     return (true);
-}
-bool comment_check(char **args)
-{
-    if (args[0] == '#')
-    {
-        free(args);
-        return (true);
-    }
-    return (false);
 }

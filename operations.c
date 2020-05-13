@@ -8,7 +8,7 @@ long int argument = 0;
  * Return: address of new head
  */
 
-void push(stack_t **head, unsigned int line_number)
+void push(stack_t **head, __attribute__((unused)) unsigned int line_number)
 {
     stack_t *new;
 
@@ -16,7 +16,7 @@ void push(stack_t **head, unsigned int line_number)
     if (new == NULL)
     {
         fprintf(stderr, "Error: malloc failed\n");
-        free_stack(*head);
+        free_stack(head);
         exit(EXIT_FAILURE);
     }
     new->n = argument;
@@ -31,7 +31,7 @@ void push(stack_t **head, unsigned int line_number)
  * @h: pointer to the head of the stack
  * Return: number of elements in the stack
  */
-void pall(stack_t **head, unsigned int line_number)
+void pall(stack_t **head, __attribute__((unused)) unsigned int line_number)
 {
     stack_t *temp;
 
@@ -48,18 +48,17 @@ void pall(stack_t **head, unsigned int line_number)
  * @head: Addres of start in list
  * Return: void
  */
-void free_stack(stack_t *head)
+void free_stack(stack_t **head)
 {
     stack_t *temp;
 
     if (head == NULL)
         return;
-    temp = head;
-    while (head)
+    while (*head != NULL)
     {
-        temp = head;
-        head = head->next;
+        temp = *head;
+        *head = (*head)->next;
         free(temp);
     }
-    free(head);
+    *head = NULL;
 }

@@ -16,6 +16,7 @@ int main(int argc, char **argv)
     byteline_t line;
     stack_t *stack = NULL;
 
+    line.number = 0;
     if (argc != 2)
     {
         fprintf(stderr, "USAGE: monty file\n");
@@ -31,12 +32,14 @@ int main(int argc, char **argv)
     {
         line.number++;
         split_line(buffer, &line, " '\n'");
-        if (line.contenido)
-            get_op_func(line)(&stack, linenumber);
+        if (line.contenido && line.contenido[0])
+            get_op_func(line, file, &stack)(&stack, linenumber);
+        else
+            free(line.contenido);
     }
     fclose(file);
     free(buffer);
-    free_stack(stack);
+    free_stack(&stack);
     return (EXIT_SUCCESS);
 }
 /**
