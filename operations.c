@@ -1,5 +1,4 @@
 #include "monty.h"
-
 /**
  * push - Adds a new node at the start of a stack
  * @head: pointer to address of list
@@ -42,6 +41,21 @@ void pall(stack_t **head, __attribute__((unused)) unsigned int line_number)
 	}
 }
 
+void pint(stack_t **head, unsigned int line_number)
+{
+	stack_t *temp;
+
+	temp = *head;
+	if (temp)
+	{
+		printf("%d\n", temp->n);
+	}
+	else
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+}
 /**
  * free_stack - frees a dlistint_t list
  * @head: Addres of start in list

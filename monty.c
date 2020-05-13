@@ -10,7 +10,6 @@ int main(int argc, char **argv)
 {
 	FILE *file;
 	size_t size = 0;
-	int linenumber = 0;
 	char *buffer = NULL;
 	byteline_t line;
 	stack_t *stack = NULL;
@@ -32,7 +31,7 @@ int main(int argc, char **argv)
 		line.number++;
 		split_line(buffer, &line, " '\n'");
 		if (line.contenido && line.contenido[0])
-			op(line, file, &stack)(&stack, linenumber);
+			op(line, file, &stack)(&stack, line.number);
 		else
 			free(line.contenido);
 	}
@@ -41,6 +40,7 @@ int main(int argc, char **argv)
 	free_stack(&stack);
 	return (EXIT_SUCCESS);
 }
+
 /**
  * split_line - split a line in diferrent tokens
  * @buffer: argument of getline typing in prompt
