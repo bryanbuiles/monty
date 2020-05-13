@@ -1,11 +1,9 @@
 #include "monty.h"
-
 /**
- * main - 
- * 
- * 
- * 
- * 
+ * main - main function
+ * @argc: NUmber of argument in prompt
+ * @argv: array of pointers that we type
+ * Return: exit succes
  */
 int main(int argc, char **argv)
 {
@@ -43,9 +41,11 @@ int main(int argc, char **argv)
 	return (EXIT_SUCCESS);
 }
 /**
- * split_line -  
- * 
- * 
+ * split_line - split a line in diferrent tokens
+ * @buffer: argument of getline typing in prompt
+ * @line: struct contain the line of the file
+ * @delimiter: delimititer to strtoken
+ * Return: void
  */
 void split_line(char *buffer, byteline_t *line, char *delimiter)
 {

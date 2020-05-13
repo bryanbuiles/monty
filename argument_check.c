@@ -1,5 +1,9 @@
 #include "monty.h"
-
+/**
+ * is_intiger - execute function if available
+ * @token: Line content in position [1]
+ * Return: void
+ */
 bool is_intiger(char *token)
 {
 	unsigned int i;

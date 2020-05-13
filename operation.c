@@ -1,10 +1,12 @@
 #include "monty.h"
 /**
  * get_op_func - execute function if available
+ * @line: struct conaining lines
+ * @file: file to open
  * Return: void
  */
-void (*get_op_func(byteline_t line, FILE * file, stack_t **stack))
-(stack_t **, unsigned int)
+
+void (*get_op_func(byteline_t line, FILE *file, stack_t **stack))(stack_t **, unsigned int)
 {
 	unsigned int i = 0;
 

@@ -6,7 +6,6 @@
  * @line_number: unused
  * Return: address of new head
  */
-
 void push(stack_t **head, __attribute__((unused)) unsigned int line_number)
 {
 	stack_t *new;
