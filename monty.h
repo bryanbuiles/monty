@@ -39,6 +39,7 @@ typedef struct instruction_s
 
 /**
  * struct byteline - pair of line content array and line number
+ * @file: address of opened file descriptor
  * @number: number of curent line
  * @contenido: array of strings with opcodes
  */
@@ -49,7 +50,7 @@ typedef struct byteline
         char **contenido;
 } byteline_t;
 
-extern byteline_t montyData;
+extern byteline_t data;
 
 void (*op())(stack_t **, unsigned int);
 void split_line(char *buffer, byteline_t *line, char *delimiter);
@@ -60,4 +61,3 @@ void free_stack(stack_t **head);
 bool is_intiger(char *token);
 
 #endif
-

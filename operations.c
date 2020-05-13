@@ -17,9 +17,9 @@ void push(stack_t **head, __attribute__((unused)) unsigned int line_number)
 		free_stack(head);
 		exit(EXIT_FAILURE);
 	}
-	if (is_intiger(montyData.contenido[1]) && montyData.contenido[1])
+	if (is_intiger(data.contenido[1]) && data.contenido[1])
 	{
-		argument = atoi(montyData.contenido[1]);
+		argument = atoi(data.contenido[1]);
 		new->n = argument;
 		new->next = *head;
 		new->prev = NULL;
@@ -29,15 +29,13 @@ void push(stack_t **head, __attribute__((unused)) unsigned int line_number)
 	}
 	else
 	{
-		free(montyData.contenido[0]);
-		free(montyData.contenido);
-		fclose(montyData.file);
+		free(data.contenido[0]);
+		free(data.contenido);
+		fclose(data.file);
 		free_stack(head);
-		fprintf(stderr, "L%d: usage: push integer\n", montyData.number);
+		fprintf(stderr, "L%d: usage: push integer\n", data.number);
 		exit(EXIT_FAILURE);
 	}
-	
-
 }
 /**
  * pall - Prints the elements of a stack
@@ -74,7 +72,8 @@ void pint(stack_t **head, unsigned int line_number)
 	else
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
-		fclose(montyData.file);
+		fclose(data.file);
+		free(data.contenido[0]);
 		exit(EXIT_FAILURE);
 	}
 }
