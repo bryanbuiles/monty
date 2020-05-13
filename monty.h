@@ -51,7 +51,7 @@ typedef struct byteline
 
 extern byteline_t montyData;
 
-void (*op(stack_t **s))(stack_t **, unsigned int);
+void (*op())(stack_t **, unsigned int);
 void split_line(char *buffer, byteline_t *line, char *delimiter);
 void push(stack_t **head, unsigned int line_number);
 void pall(stack_t **head, unsigned int line_number);

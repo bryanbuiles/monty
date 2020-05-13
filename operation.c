@@ -7,7 +7,7 @@
  * Return: void
  */
 
-void (*op(stack_t **s))(stack_t **, unsigned int)
+void (*op())(stack_t **, unsigned int)
 {
 	unsigned int i = 0;
 

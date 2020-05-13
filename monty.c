@@ -10,7 +10,6 @@ int main(int argc, char **argv)
 {
 	size_t size = 0;
 	char *buffer = NULL;
-	//byteline_t line;
 	stack_t *stack = NULL;
 	
 
@@ -31,7 +30,7 @@ int main(int argc, char **argv)
 		montyData.number++;
 		split_line(buffer, &montyData, " '\n'");
 		if (montyData.contenido && montyData.contenido[0])
-			op(&stack)(&stack, montyData.number);
+			op()(&stack, montyData.number);
 		else
 			free(montyData.contenido);
 	}
