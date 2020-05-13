@@ -1,11 +1,13 @@
 #include "monty.h"
 #include <errno.h>
+
 void (*get_op_func(byteline_t line))(stack_t **, unsigned int)
 {
 
     unsigned int i = 0;
-    char **end;
+    char *end;
 
+    errno = 0;
     instruction_t ops[] = {
         {"push", push},
         {"pall", pall},
@@ -21,9 +23,11 @@ void (*get_op_func(byteline_t line))(stack_t **, unsigned int)
         if (strcmp(ops[i].opcode, line.contenido[0]) == 0)
         {
             if (strcmp(ops[i].opcode, "push") == 0)
-            {
-                errno = 0;
-                argument = strtol(line.contenido[1], end, 10);
+            {     
+                if (line.contenido[1] != end)
+                {
+                    argument = strtol(line.contenido[1], &end, 10);
+                }
                 if (errno != 0)
                 {
                     fprintf(stderr, "L%d: usage: push integer\n", line.number);
