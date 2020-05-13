@@ -1,9 +1,11 @@
 #include "monty.h"
-
-void get_op_func(char **args, unsigned int num)
+#include <errno.h>
+void (*get_op_func(byteline_t line))(stack_t **, unsigned int)
 {
-    argument = 0;
-    unsigned int i;
+
+    unsigned int i = 0;
+    char **end;
+
     instruction_t ops[] = {
         {"push", push},
         {"pall", pall},
@@ -14,19 +16,27 @@ void get_op_func(char **args, unsigned int num)
         //{"nop", nop},
         {NULL, NULL}};
 
-    while (ops[i].opcode)
+    while (ops[i].opcode != NULL)
     {
-        if (strcmp(ops[i].opcode, args[0]) == 0)
+        if (strcmp(ops[i].opcode, line.contenido[0]) == 0)
         {
             if (strcmp(ops[i].opcode, "push") == 0)
-                argument = atoi(args[1]);
-            ops[i].f;
+            {
+                errno = 0;
+                argument = strtol(line.contenido[1], end, 10);
+                if (errno != 0)
+                {
+                    fprintf(stderr, "L%d: usage: push integer\n", line.number);
+                    exit(EXIT_FAILURE);
+                }
+            }
+            free(line.contenido);
+            return (ops[i].f);
         }
-
         i++;
     }
 
-    printf("L%d: unknown instruction %s\n", num, args[0]);
-    free(args);
+    printf("L%d: unknown instruction %s\n", line.number, line.contenido[0]);
+    free(line.contenido);
     exit(EXIT_FAILURE);
 }

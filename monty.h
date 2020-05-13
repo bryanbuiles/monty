@@ -37,11 +37,19 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-extern int argument;
-void get_op_func(char **args, unsigned int);
+typedef struct byteline
+{
+        unsigned int number;
+        char **contenido;
+} byteline_t;
+
+extern long int argument;
+
+void (*get_op_func(byteline_t line))(stack_t **, unsigned int);
 bool argument_check(char *token);
 bool comment_check(char **args);
-char **split_line(char *line, char *delimiter);
+void split_line(char *buffer, byteline_t *line, char *delimiter);
 void push(stack_t **head, unsigned int line_number);
 void pall(stack_t **head, unsigned int line_number);
+void free_stack(stack_t *head);
 #endif

@@ -1,7 +1,5 @@
 #include "monty.h"
 
-int argument = 0;
-
 /**
  * main - 
  * 
@@ -14,7 +12,9 @@ int main(int argc, char **argv)
     FILE *file;
     size_t size = 0;
     int linenumber = 0;
-    char *buffer, **args;
+    char *buffer = NULL;
+    byteline_t line;
+    stack_t *stack = NULL;
 
     if (argc != 2)
     {
@@ -27,17 +27,16 @@ int main(int argc, char **argv)
         fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
         exit(EXIT_FAILURE);
     }
-    while (getline(&buffer, &size, file))
+    while (getline(&buffer, &size, file) != -1)
     {
-        linenumber++;
-        args = split_line(buffer, " '\n'");
-        if (args)
-        {
-            get_op_func(args, linenumber);
-            free(args);
-        }
+        line.number++;
+        split_line(buffer, &line, " '\n'");
+        if (line.contenido)
+            get_op_func(line)(&stack, linenumber);
     }
     fclose(file);
+    free(buffer);
+    free_stack(stack);
     return (EXIT_SUCCESS);
 }
 /**
@@ -45,24 +44,23 @@ int main(int argc, char **argv)
  * 
  * 
  */
-char **split_line(char *line, char *delimiter)
+void split_line(char *buffer, byteline_t *line, char *delimiter)
 {
     size_t buffer_size = 3;
-    char **alltokens, *token = NULL;
+    char *strtoken = NULL;
     int i;
 
-    alltokens = malloc(sizeof(char *) * buffer_size);
-    if (alltokens == NULL)
+    line->contenido = malloc(sizeof(char *) * buffer_size);
+    if (line->contenido == NULL)
     {
         printf("Error: malloc failed");
         exit(EXIT_FAILURE);
     }
-    token = strtok(line, delimiter);
-    for (i = 0; token && i < 2; i++)
+    strtoken = strtok(buffer, delimiter);
+    for (i = 0; strtoken && i < 2; i++)
     {
-        alltokens[i] = token;
-        token = strtok(NULL, delimiter);
+        line->contenido[i] = strtoken;
+        strtoken = strtok(NULL, delimiter);
     }
-    alltokens[i] = NULL;
-    return (alltokens);
+    line->contenido[i] = NULL;
 }
