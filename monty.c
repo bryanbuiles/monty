@@ -1,5 +1,5 @@
 #include "monty.h"
-int argument;
+byteline_t montyData;
 /**
  * main - main function
  * @argc: NUmber of argument in prompt
@@ -8,34 +8,33 @@ int argument;
  */
 int main(int argc, char **argv)
 {
-	FILE *file;
 	size_t size = 0;
 	char *buffer = NULL;
-	byteline_t line;
 	stack_t *stack = NULL;
+	
 
-	line.number = 0;
+	montyData.number = 0;
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	file = fopen(argv[1], "r");
-	if (!file)
+	montyData.file = fopen(argv[1], "r");
+	if (!montyData.file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
-	while (getline(&buffer, &size, file) != -1)
+	while (getline(&buffer, &size, montyData.file) != -1)
 	{
-		line.number++;
-		split_line(buffer, &line, " '\n'");
-		if (line.contenido && line.contenido[0])
-			op(line, file, &stack)(&stack, line.number);
+		montyData.number++;
+		split_line(buffer, &montyData, " '\n'");
+		if (montyData.contenido && montyData.contenido[0])
+			op()(&stack, montyData.number);
 		else
-			free(line.contenido);
+			free(montyData.contenido);
 	}
-	fclose(file);
+	fclose(montyData.file);
 	free(buffer);
 	free_stack(&stack);
 	return (EXIT_SUCCESS);
