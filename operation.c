@@ -7,10 +7,9 @@
  * Return: void
  */
 
-void (*op(byteline_t l, FILE *f, stack_t **s))(stack_t **, unsigned int)
+void (*op(byteline_t l, FILE * f, stack_t **s))(stack_t **, unsigned int)
 {
 	unsigned int i = 0;
-
 	instruction_t ops[] = {
 		{"push", push},
 		{"pall", pall},
