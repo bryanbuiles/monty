@@ -75,6 +75,26 @@ void add(stack_t **head, unsigned int line_number)
  * @line_number: Line number
  * Return: void
  */
-void nop( __attribute__((unused)) stack_t **head, __attribute__((unused)) unsigned int line_number)
+void nop(__attribute__((unused)) stack_t **head, __attribute__((unused)) unsigned int line_number)
 {
+}
+/**
+ * sub - sub the top two elements of the stack and pop.
+ * @head: Addres of start in list
+ * @line_number: Line number
+ * Return: void
+ */
+void sub(stack_t **head, unsigned int line_number)
+{
+	if (head == NULL || *head == NULL || !((*head)->next))
+	{
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
+		free_stack(head);
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		(*head)->next->n -= (*head)->n;
+		pop(head, line_number);
+	}
 }
