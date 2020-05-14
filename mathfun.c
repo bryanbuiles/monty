@@ -1,11 +1,11 @@
 #include "monty.h"
 /**
- * div - div the top two elements of the stack and pop.
+ * div_fun - div the top two elements of the stack and pop.
  * @head: Addres of start in list
  * @line_number: Line number
  * Return: void
  */
-void div(stack_t **head, unsigned int line_number)
+void div_fun(stack_t **head, unsigned int line_number)
 {
 	if (head == NULL || *head == NULL || !((*head)->next))
 	{
