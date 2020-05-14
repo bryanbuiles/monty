@@ -65,7 +65,7 @@ void pint(stack_t **head, unsigned int line_number)
 	stack_t *temp;
 
 	temp = *head;
-	if (temp)
+	if ((*head) && head != NULL)
 	{
 		printf("%d\n", temp->n);
 	}
