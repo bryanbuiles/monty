@@ -10,7 +10,7 @@ bool is_intiger(char *token)
 
 	for (i = 0; token && token[i]; i++)
 	{
-		if (i == 0 && token[i] == '-')
+		if (token[0] == '-')
 			continue;
 		if (token[i] <= 47 || token[i] >= 58)
 			return (false);
