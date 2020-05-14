@@ -23,7 +23,7 @@ void (*op())(stack_t **, unsigned int)
 		i++;
 	}
 	printf("L%d: unknown instruction %s\n", data.number, data.contenido[0]);
-	free(data.contenido);
+	free(data.contenido[0]);
 	free(data.contenido);
 	fclose(data.file);
 	exit(EXIT_FAILURE);
