@@ -50,9 +50,9 @@ void pint(stack_t **head, unsigned int line_number)
 {
 	stack_t *temp;
 
-	temp = *head;
-	if (temp)
+	if (head && *head)
 	{
+		temp = *head;
 		printf("%d\n", temp->n);
 	}
 	else

@@ -46,7 +46,11 @@ int main(int argc, char **argv)
 	}
 	fclose(file);
 	free(buffer);
-	free_stack(&stack);
+	if (!stack)
+		exit(EXIT_FAILURE);
+	else
+		free_stack(&stack);
+
 	return (EXIT_SUCCESS);
 }
 
