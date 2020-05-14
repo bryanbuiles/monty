@@ -8,7 +8,6 @@
 void push(stack_t **head, __attribute__((unused)) unsigned int line_number)
 {
 	stack_t *new;
-	int argument = 0;
 
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
@@ -17,25 +16,12 @@ void push(stack_t **head, __attribute__((unused)) unsigned int line_number)
 		free_stack(head);
 		exit(EXIT_FAILURE);
 	}
-	if (is_intiger(data.contenido[1]) && data.contenido[1])
-	{
-		argument = atoi(data.contenido[1]);
-		new->n = argument;
-		new->next = *head;
-		new->prev = NULL;
-		if ((*head) != NULL)
-			(*head)->prev = new;
-		*head = new;
-	}
-	else
-	{
-		free(data.contenido[0]);
-		free(data.contenido);
-		fclose(data.file);
-		free_stack(head);
-		fprintf(stderr, "L%d: usage: push integer\n", data.number);
-		exit(EXIT_FAILURE);
-	}
+	new->n = argument;
+	new->next = *head;
+	new->prev = NULL;
+	if ((*head) != NULL)
+		(*head)->prev = new;
+	*head = new;
 }
 /**
  * pall - Prints the elements of a stack
@@ -64,17 +50,15 @@ void pint(stack_t **head, unsigned int line_number)
 {
 	stack_t *temp;
 
-	temp = *head;
-	if ((*head) && head != NULL)
+	if (head && *head)
 	{
+		temp = *head;
 		printf("%d\n", temp->n);
 	}
 	else
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
-		fclose(data.file);
-		free(data.contenido[0]);
-		exit(EXIT_FAILURE);
+		free_stack(head);
 	}
 }
 /**

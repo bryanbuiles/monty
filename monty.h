@@ -39,20 +39,18 @@ typedef struct instruction_s
 
 /**
  * struct byteline - pair of line content array and line number
- * @file: address of opened file descriptor
  * @number: number of curent line
  * @contenido: array of strings with opcodes
  */
 typedef struct byteline
 {
-        FILE *file;
         unsigned int number;
         char **contenido;
 } byteline_t;
 
-extern byteline_t data;
+extern int argument;
 
-void (*op())(stack_t **, unsigned int);
+void (*op(byteline_t line, FILE *f, stack_t **s))(stack_t **, unsigned int);
 void split_line(char *buffer, byteline_t *line, char *delimiter);
 void push(stack_t **head, unsigned int line_number);
 void pall(stack_t **head, unsigned int line_number);
