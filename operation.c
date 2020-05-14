@@ -14,6 +14,7 @@ void (*op(byteline_t l, FILE * f, stack_t **s))(stack_t **, unsigned int)
 		{"push", push},
 		{"pall", pall},
 		{"pint", pint},
+		{"pop", pop},
 		{NULL, NULL}};
 	while (ops[i].opcode != NULL)
 	{

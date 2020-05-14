@@ -81,3 +81,29 @@ void free_stack(stack_t **head)
 	}
 	*head = NULL;
 }
+/**
+ * pop - removes the top element
+ * @head: Addres of start in list
+ * @line_number: line number
+ * Return: void
+ */
+void pop(stack_t **head, unsigned int line_number)
+{
+	if (head == NULL || *head == NULL)
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		free_stack(head);
+		exit(EXIT_FAILURE);
+	}
+	if ((*head)->next)
+	{
+		*head = (*head)->next;
+		free((*head)->prev);
+		(*head)->prev = NULL;
+	}
+	else
+	{
+		free(*head);
+		*head = NULL;
+	}
+}
