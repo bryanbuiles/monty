@@ -17,7 +17,7 @@ void (*op(byteline_t l, FILE * f, stack_t **s))(stack_t **, unsigned int)
 		{"pop", pop},
 		{"swap", swap},
 		{"add", add},
-		/*{"nop", nop},*/
+		{"nop", nop},
 		{NULL, NULL}};
 	while (ops[i].opcode != NULL)
 	{

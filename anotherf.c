@@ -69,3 +69,12 @@ void add(stack_t **head, unsigned int line_number)
 		pop(head, line_number);
 	}
 }
+/**
+ * nop - does nothing.
+ * @head: Addres of start in list
+ * @line_number: Line number
+ * Return: void
+ */
+void nop( __attribute__((unused)) stack_t **head, __attribute__((unused)) unsigned int line_number)
+{
+}
