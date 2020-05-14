@@ -8,36 +8,20 @@
 void push(stack_t **head, __attribute__((unused)) unsigned int line_number)
 {
 	stack_t *new;
-	int argument = 0;
 
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		free_stack(head);
-		exit(EXIT_FAILURE);
+		fileData.error = true;
 	}
-	if (is_intiger(montyData.contenido[1]) && montyData.contenido[1])
-	{
-		argument = atoi(montyData.contenido[1]);
-		new->n = argument;
-		new->next = *head;
-		new->prev = NULL;
-		if ((*head) != NULL)
-			(*head)->prev = new;
-		*head = new;
-	}
-	else
-	{
-		free(montyData.contenido[0]);
-		free(montyData.contenido);
-		fclose(montyData.file);
-		free_stack(head);
-		fprintf(stderr, "L%d: usage: push integer\n", montyData.number);
-		exit(EXIT_FAILURE);
-	}
-	
-
+	new->n = fileData.argument;
+	new->next = *head;
+	new->prev = NULL;
+	if ((*head) != NULL)
+		(*head)->prev = new;
+	*head = new;
 }
 /**
  * pall - Prints the elements of a stack
@@ -74,8 +58,7 @@ void pint(stack_t **head, unsigned int line_number)
 	else
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
-		fclose(montyData.file);
-		exit(EXIT_FAILURE);
+		fileData.error = true;
 	}
 }
 /**
