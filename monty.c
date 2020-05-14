@@ -29,7 +29,7 @@ int main(int argc, char **argv)
 	while (getline(&buffer, &size, file) != -1)
 	{
 		line.number++;
-		split_line(buffer, &line, " \t'\n'");
+		split_line(buffer, &line, " '\n'");
 		if (line.contenido && line.contenido[0])
 		{
 			op(line, file, &stack)(&stack, line.number);
@@ -39,6 +39,7 @@ int main(int argc, char **argv)
 	}
 	fclose(file);
 	free(buffer);
+	free_stack(&stack);
 	return (EXIT_SUCCESS);
 }
 

@@ -50,14 +50,15 @@ void pint(stack_t **head, unsigned int line_number)
 {
 	stack_t *temp;
 
-	temp = *head;
-	if ((*head))
+	if (head && *head)
 	{
+		temp = *head;
 		printf("%d\n", temp->n);
 	}
 	else
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		free_stack(head);
 		exit(EXIT_FAILURE);
 	}
 }
