@@ -13,6 +13,12 @@ void div_fun(stack_t **head, unsigned int line_number)
 		free_stack(head);
 		exit(EXIT_FAILURE);
 	}
+	if ((*head)->n == 0)
+	{
+		fprintf(stderr, "L%d: division by zero\n", line_number);
+		free_stack(head);
+		exit(EXIT_FAILURE);
+	}
 	else
 	{
 		(*head)->next->n /= (*head)->n;
@@ -50,6 +56,12 @@ void mod(stack_t **head, unsigned int line_number)
 	if (head == NULL || *head == NULL || !((*head)->next))
 	{
 		fprintf(stderr, "L%d: can't mod, stack too short\n", line_number);
+		free_stack(head);
+		exit(EXIT_FAILURE);
+	}
+	if ((*head)->n == 0)
+	{
+		fprintf(stderr, "L%d: division by zero\n", line_number);
 		free_stack(head);
 		exit(EXIT_FAILURE);
 	}
