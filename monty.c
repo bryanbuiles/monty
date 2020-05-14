@@ -42,31 +42,3 @@ int main(int argc, char **argv)
 	free_stack(&stack);
 	return (EXIT_SUCCESS);
 }
-
-/**
- * split_line - split a line in diferrent tokens
- * @buffer: argument of getline typing in prompt
- * @line: struct contain the line of the file
- * @delimiter: delimititer to strtoken
- * Return: void
- */
-void split_line(char *buffer, byteline_t *line, char *delimiter)
-{
-	size_t buffer_size = 3;
-	char *strtoken = NULL;
-	int i;
-
-	line->contenido = malloc(sizeof(char *) * buffer_size);
-	if (line->contenido == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed");
-		exit(EXIT_FAILURE);
-	}
-	strtoken = strtok(buffer, delimiter);
-	for (i = 0; strtoken && i < 2; i++)
-	{
-		line->contenido[i] = strtoken;
-		strtoken = strtok(NULL, delimiter);
-	}
-	line->contenido[i] = NULL;
-}
