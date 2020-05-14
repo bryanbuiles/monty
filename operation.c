@@ -7,7 +7,7 @@
  * Return: void
  */
 
-void (*op(byteline_t line, FILE *f, stack_t **s))(stack_t **, unsigned int)
+void (*op(byteline_t line, FILE * f, stack_t **s))(stack_t **, unsigned int)
 {
 	unsigned int i = 0;
 
@@ -41,7 +41,8 @@ void (*op(byteline_t line, FILE *f, stack_t **s))(stack_t **, unsigned int)
 		}
 		i++;
 	}
-	fprintf(stderr ,"L%d: unknown instruction %s\n", line.number, line.contenido[0]);
+	fprintf(stderr, "L%d: unknown instruction %s\n",
+		 line.number, line.contenido[0]);
 	free(line.contenido[0]);
 	free(line.contenido);
 	fclose(f);
