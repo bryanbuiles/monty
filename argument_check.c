@@ -17,15 +17,4 @@ bool is_intiger(char *token)
 	}
 	return (true);
 }
-/**
- * is_comment - check if line is comment
- * @token: Line content in position [1]
- * Return: void
- */
-bool is_comment(char *token)
-{
-	if (token[0] == '#')
-		return (true);
-	else
-		return (false);
-}
+

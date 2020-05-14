@@ -32,8 +32,6 @@ int main(int argc, char **argv)
 		split_line(buffer, &line, " '\n'");
 		if (line.contenido && line.contenido[0])
 		{
-			if (is_comment(line.contenido[0]))
-				continue;
 			op(line, file, &stack)(&stack, line.number);
 		}
 		else
