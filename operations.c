@@ -14,9 +14,9 @@ void push(stack_t **head, __attribute__((unused)) unsigned int line_number)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
 		free_stack(head);
-		fileData.error = true;
+		exit(EXIT_FAILURE);
 	}
-	new->n = fileData.argument;
+	new->n = argument;
 	new->next = *head;
 	new->prev = NULL;
 	if ((*head) != NULL)
@@ -50,15 +50,15 @@ void pint(stack_t **head, unsigned int line_number)
 {
 	stack_t *temp;
 
-	if (head && *head)
+	temp = *head;
+	if ((*head))
 	{
-		temp = *head;
 		printf("%d\n", temp->n);
 	}
 	else
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
-		fileData.error = true;
+		exit(EXIT_FAILURE);
 	}
 }
 /**

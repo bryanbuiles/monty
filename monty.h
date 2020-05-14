@@ -47,12 +47,8 @@ typedef struct byteline
         unsigned int number;
         char **contenido;
 } byteline_t;
-typedef struct fileData
-{
-        int argument;
-        bool error;
-} data_t;
-extern data_t fileData;
+
+extern int argument;
 
 void (*op(byteline_t line, FILE *f, stack_t **s))(stack_t **, unsigned int);
 void split_line(char *buffer, byteline_t *line, char *delimiter);

@@ -1,5 +1,5 @@
 #include "monty.h"
-data_t fileData;
+int argument;
 /**
  * main - main function
  * @argc: NUmber of argument in prompt
@@ -28,18 +28,11 @@ int main(int argc, char **argv)
 	}
 	while (getline(&buffer, &size, file) != -1)
 	{
-		fileData.error = false;
 		line.number++;
-		split_line(buffer, &line, " '\n'");
+		split_line(buffer, &line, " \t'\n'");
 		if (line.contenido && line.contenido[0])
 		{
 			op(line, file, &stack)(&stack, line.number);
-			if (fileData.error == true)
-			{
-				free(buffer);
-				fclose(file);
-				exit(EXIT_FAILURE);
-			}
 		}
 		else
 			free(line.contenido);

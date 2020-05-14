@@ -24,7 +24,7 @@ void (*op(byteline_t line, FILE * f, stack_t **s))(stack_t **, unsigned int)
 			{
 				if (is_intiger(line.contenido[1]) && line.contenido[1])
 				{
-					fileData.argument = atoi(line.contenido[1]);
+					argument = atoi(line.contenido[1]);
 				}
 				else
 				{
